@@ -44,7 +44,6 @@ class Search extends Component {
   handleSearchSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
-    // var req={query:this.state.title};
     API.searchBooks(this.state.title)
       .then(res => {
         this.setState({ books: res.data.items })
@@ -108,7 +107,7 @@ class Search extends Component {
                           title={book.volumeInfo.title}
                           author={book.volumeInfo.authors ? book.volumeInfo.authors.join(",  ") : ""}
                           description={book.volumeInfo.description}
-                          image={(book.volumeInfo.imageLinks.thumbnail) ? book.volumeInfo.imageLinks.thumbnail : ""}
+                          image={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail: ""}
                           link={book.volumeInfo.previewLink}
                         />
                         <SavedBtn

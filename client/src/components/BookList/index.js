@@ -23,11 +23,11 @@ export function BookListItem({
           </Col>
           <Col size="xs-8 sm-9">
             <h3>{title}</h3>
-            <h6>{author}</h6>
+            <h6>Writen by : {author}</h6>
             <p>Description: {description}</p>
-            <a rel="noreferrer noopener" target="_blank" href={link}>
+            {/* <a rel="noreferrer noopener" target="_blank" href={link}>
               Go to book details!
-            </a>            
+            </a>             */}
           </Col>
         </Row>
       </Container>
