@@ -1,0 +1,14 @@
+.Footer {
+  background: rgb(62, 182, 7);
+  color: wheat;
+  /* height: 25px; */
+  /* max-width: 1020px; */
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+}
+
+.logo{
+  width: 25px;
+  height: 25px;
+}
