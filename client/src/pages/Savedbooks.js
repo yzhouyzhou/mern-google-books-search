@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
+import { DeleteBtn } from "../components/Btn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import { SavedList, SavedListItem } from "../components/SavedList";
 
 class Savedbooks extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    description: ""
+    books: []
   };
 
   componentDidMount() {
@@ -21,7 +17,7 @@ class Savedbooks extends Component {
   loadBooks = () => {
     API.getBooks()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", description: "" })
+        this.setState({ books: res.data})
       )
       .catch(err => console.log(err));
   };
@@ -35,27 +31,27 @@ class Savedbooks extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>         
+        <Row>
           <Col size="sm-12">
             <Jumbotron>
               <h1>Books On My List</h1>
             </Jumbotron>
             {this.state.books.length ? (
-              <List>
+              <SavedList>
+                <h1><u>Saved Books</u></h1>
                 {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
+                  <SavedListItem key={book._id}>
+                    <a style={{ float: "left", color: "darkgreen" }} rel="noreferrer noopener" target="_blank" href={book.link}>
+                      <strong>{book.title} </strong>
+                      by {book.author}
+                    </a>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
+                  </SavedListItem>
                 ))}
-              </List>
+              </SavedList>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

@@ -11,7 +11,8 @@ function Jumbotron({ children }) {
     paddingTop: 100,
     marginTop: 55,
     border: "3px solid gray",
-    textAlign: "center"
+    textAlign: "center",
+    color: "darkgreen"
   };
   return (
     <div style={backgroundStyle} className="jumbotron">

@@ -1,6 +1,7 @@
 import React from "react";
 import Thumbnail from "../Thumbnail";
 import { Container, Row, Col } from "../Grid";
+// import Btn from "../Btn"
 
 
 export function BookList({ children }) {
@@ -22,12 +23,10 @@ export function BookListItem({
             <Thumbnail src={image} />
           </Col>
           <Col size="xs-8 sm-9">
-            <h3>{title}</h3>
-            <h6>Writen by : {author}</h6>
-            <p>Description: {description}</p>
-            {/* <a rel="noreferrer noopener" target="_blank" href={link}>
-              Go to book details!
-            </a>             */}
+            <p>
+              <strong>Description: </strong>
+              {description}
+            </p>
           </Col>
         </Row>
       </Container>

@@ -4,7 +4,8 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { BookList, BookListItem } from "../components/BookList";
 import { Input, FormBtn } from "../components/Form";
-import SavedBtn from "../components/SaveBtn";
+// import SavedBtn from "../components/SaveBtn";
+import { SaveBtn, ViewBtn } from "../components/Btn";
 
 class Search extends Component {
   state = {
@@ -69,6 +70,11 @@ class Search extends Component {
     alert(`Saved the Book [ ${info.title} ]`);
   };
 
+  handleViewSubmit = info => {
+    console.log("the book is going to view " + info.title);
+    window.open(`${info.previewLink}`);
+  };
+
   render() {
     return (
       <Container fluid>
@@ -76,6 +82,7 @@ class Search extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>Think before you speak. Read before you think.</h1>
+              <h4>Search for and Save Books of Interest</h4>
             </Jumbotron>
             <form>
               <Input
@@ -85,7 +92,7 @@ class Search extends Component {
                 placeholder="Harry Potter (eg)"
               />
               <FormBtn
-                disabled={!(this.state.title)}
+                // disabled={!(this.state.title)}
                 onClick={this.handleSearchSubmit}
               >
                 Search Book
@@ -98,25 +105,41 @@ class Search extends Component {
             {!this.state.books.length ? (
               <h1 className="text-center">No Books to Display</h1>
             ) : (
-                <BookList>
-                  {this.state.books.map(book => {
-                    return (
-                      <div>                        
-                        <BookListItem
-                          key={book.volumeInfo.title}
-                          title={book.volumeInfo.title}
-                          author={book.volumeInfo.authors ? book.volumeInfo.authors.join(",  ") : ""}
-                          description={book.volumeInfo.description}
-                          image={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail: ""}
-                          link={book.volumeInfo.previewLink}
-                        />
-                        <SavedBtn
-                          onClick={() => this.handleSaveSubmit(book.volumeInfo)}
-                        />                       
-                      </div>
-                    )
-                  })}
-                </BookList>                
+                <div>
+                  <BookList>
+                    <h1><u>Results</u></h1>
+                    {this.state.books.map(book => {
+                      return (
+                        <div>
+                          <Row>
+                            <Col size="md-7">
+                              <h3>{book.volumeInfo.title}</h3>
+                              <h6>Writen by : {book.volumeInfo.authors ? book.volumeInfo.authors.join(",  ") : ""}</h6>
+                            </Col>
+                            <Col size="md-2">
+                              <ViewBtn
+                                onClick={() => this.handleViewSubmit(book.volumeInfo)}
+                              />
+                            </Col>
+                            <Col size="md-2">
+                              <SaveBtn
+                                onClick={() => this.handleSaveSubmit(book.volumeInfo)}
+                              />
+                            </Col>
+                          </Row>
+                          <BookListItem
+                            key={book.volumeInfo.title}
+                            title={book.volumeInfo.title}
+                            author={book.volumeInfo.authors ? book.volumeInfo.authors.join(",  ") : ""}
+                            description={book.volumeInfo.description}
+                            image={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : ""}
+                            link={book.volumeInfo.previewLink}
+                          />
+                        </div>
+                      )
+                    })}
+                  </BookList>
+                </div>
               )}
           </Col>
         </Row>
