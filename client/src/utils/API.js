@@ -4,8 +4,7 @@ import axios from "axios";
 // const APIKEY = "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=20";
 const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const APIKEY = ":keyes&key=AIzaSyCmueHczoF3X1KE2SwsY2evRxEzsixB8Ts";
-// https://www.googleapis.com/books/v1/users/yingzhou03/bookshelves?source=ying&fields=harry&key={YOUR_API_KEY}
-// https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+// const APIKEY = ":keyes&key=" + process.env.GOOGLE_API_KEY;
 
 export default {
 

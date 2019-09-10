@@ -4,7 +4,7 @@ import React from "react";
 // That way we don't have to define them all individually
 export function ViewBtn(props) {
   return (
-    <button style={{ float: "left", marginTop: 20, width: 180 }} className="btn btn-darkgray" {...props}>
+    <button style={{ float: "left", marginTop: 20, width: 180 }} className="btn btn-dark" {...props}>
       View
     </button>
   );
@@ -12,7 +12,7 @@ export function ViewBtn(props) {
 
 export function SaveBtn(props) {
   return (
-    <button style={{ float: "left", marginTop: 20, width: 180 }} className="btn btn-darkgray" {...props}>
+    <button style={{ float: "left", marginTop: 20, width: 180 }} className="btn btn-dark" {...props}>
       Save
     </button>
   );
