@@ -26,13 +26,13 @@ list the search result; view or save the book; saved book stored the book inform
 *   Footer
 
 ## Search page is used Google Book API
-![search-book-image](./public/search-book-image.PNG)
+![search-book-image](./client/public/search-book-image.PNG)
 
 ## Saved page is stored the book information into MongoDB
-![saved-book-image](./public/saved-book-image.PNG)
+![saved-book-image](./client/public/saved-book-image.PNG)
 
 ## Save button to save the book
-![save-alert-image](./public/save-alert-image.PNG)
+![save-alert-image](./client/public/save-alert-image.PNG)
 
 ## After books saved you can delete the books
 
