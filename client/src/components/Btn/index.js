@@ -20,9 +20,8 @@ export function SaveBtn(props) {
 
 export function DeleteBtn(props) {
   return (
-    <span style={{ float: "right", color: "#e74944" }} className="delete-btn" {...props} role="button" tabIndex="0">
-      ✗
-    </span>
+    <button style={{ float: "left", marginTop: 20, width: 180 }} className="btn btn-dark" {...props}>
+      Delete
+    </button>
   );
 }
-

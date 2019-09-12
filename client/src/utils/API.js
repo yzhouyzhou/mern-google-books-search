@@ -2,21 +2,17 @@ import axios from "axios";
 
 // const BASEURL = "https://api.giphy.com/v1/gifs/search?q=";
 // const APIKEY = "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=20";
-const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
-const APIKEY = ":keyes&key=AIzaSyCmueHczoF3X1KE2SwsY2evRxEzsixB8Ts";
+// const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
+// const APIKEY = ":keyes&key=AIzaSyCmueHczoF3X1KE2SwsY2evRxEzsixB8Ts";
 // const APIKEY = ":keyes&key=" + process.env.GOOGLE_API_KEY;
 
 export default {
 
-  searchBooks: function (query) {
-    console.log(query, "searchBooks");
-    return axios.get(BASEURL + query + APIKEY);
+  // search book title in google book api
+  searchBooks: function(bookTitle) {
+    console.log("searchBooks ", bookTitle);
+    return axios.get("/api/search/" + bookTitle);
   },
-
-  // searchBooks: function(query) {
-  //   console.log(query, "searchBooks");
-  //   return axios.get("/api/search" + query);
-  // },
 
   // Gets all books
   getBooks: function () {

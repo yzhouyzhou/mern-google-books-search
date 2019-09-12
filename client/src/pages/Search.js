@@ -4,17 +4,13 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { BookList, BookListItem } from "../components/BookList";
 import { Input, FormBtn } from "../components/Form";
-// import SavedBtn from "../components/SaveBtn";
 import { SaveBtn, ViewBtn } from "../components/Btn";
+import Thumbnail from "../components/Thumbnail";
 
 class Search extends Component {
   state = {
     books: [],
     title: "",
-    author: "",
-    description: "",
-    image: "",
-    link: ""
   };
 
   componentDidMount() {
@@ -22,17 +18,13 @@ class Search extends Component {
   }
 
   loadBooks = () => {
-    API.searchBooks(this.state.title)
-      .then(res =>
-        this.setState({ books: res.data.items, title: "", author: "", description: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
+    if (this.state.title.length !== 0) {
+      API.searchBooks(this.state.title)
+        .then(res =>
+          this.setState({ books: res.data.items, title: "", author: "", description: "" })
+        )
+        .catch(err => console.log(err));
+    }
   };
 
   handleInputChange = event => {
@@ -64,10 +56,9 @@ class Search extends Component {
         image: info.imageLinks.thumbnail ? info.imageLinks.thumbnail : "",
         link: info.previewLink
       })
-        .then(res => this.loadBooks())
+        .then(res => alert(`Saved the Book [ ${info.title} ]`))
         .catch(err => console.log(err));
     }
-    alert(`Saved the Book [ ${info.title} ]`);
   };
 
   handleViewSubmit = info => {
@@ -92,7 +83,7 @@ class Search extends Component {
                 placeholder="Harry Potter (eg)"
               />
               <FormBtn
-                // disabled={!(this.state.title)}
+                disabled={!(this.state.title)}
                 onClick={this.handleSearchSubmit}
               >
                 Search Book
@@ -105,12 +96,12 @@ class Search extends Component {
             {!this.state.books.length ? (
               <h1 className="text-center">No Books to Display</h1>
             ) : (
-                <div>
-                  <BookList>
-                    <h1><u>Results</u></h1>
-                    {this.state.books.map(book => {
-                      return (
-                        <div>
+                <BookList>
+                  <h1><u>Results</u></h1>
+                  {this.state.books.map(book => {
+                    return (
+                      <BookListItem key={book.id}>
+                        <Container>
                           <Row>
                             <Col size="md-7">
                               <h3>{book.volumeInfo.title}</h3>
@@ -127,19 +118,22 @@ class Search extends Component {
                               />
                             </Col>
                           </Row>
-                          <BookListItem
-                            key={book.volumeInfo.title}
-                            title={book.volumeInfo.title}
-                            author={book.volumeInfo.authors ? book.volumeInfo.authors.join(",  ") : ""}
-                            description={book.volumeInfo.description}
-                            image={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : ""}
-                            link={book.volumeInfo.previewLink}
-                          />
-                        </div>
-                      )
-                    })}
-                  </BookList>
-                </div>
+                          <Row>
+                            <Col size="xs-4 sm-2">
+                              <Thumbnail src={(book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : ""} />
+                            </Col>
+                            <Col size="xs-8 sm-9">
+                              <p>
+                                <strong>Description: </strong>
+                                {book.volumeInfo.description}
+                              </p>
+                            </Col>
+                          </Row>
+                        </Container>
+                      </BookListItem>
+                    )
+                  })}
+                </BookList>
               )}
           </Col>
         </Row>
