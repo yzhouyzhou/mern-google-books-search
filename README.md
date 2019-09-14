@@ -3,15 +3,15 @@
 
  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## githup live URL
-https://yzhouyzhou.github.io/clicky-game/
+## heroku live URL
+https://yzhou-mern-booksearch-live1.herokuapp.com/
 
 ## git repo
-https://github.com/yzhouyzhou/clicky-game
+https://github.com/yzhouyzhou/mern-google-books-search
 
 ## updated ying zhou's updated portfolio
-React Clicky Game September 5 2019
-https://yzhou-portfolio-live1.herokuapp.com/
+MERN Google Book Search September 15 2019
+https://yzhou-mern-booksearch-live1.herokuapp.com/
 
 
 ## Overview
